@@ -10,7 +10,7 @@
     <members>Report Folder Name/Report_Unique_Name</members>
     <members>Report Folder Name/Another_Report_Unique_Name</members>
     ...
-    <name>Report>
+    <name>Report></name>
 <types>`
 
 - Run sfdx force:source:retrieve -x manifest/package.xml -u yourSandboxAlias    
