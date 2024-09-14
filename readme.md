@@ -18,5 +18,3 @@
 <types>`
 
 - Run sfdx force:source:retrieve -x manifest/package.xml -u yourSandboxAlias
-
-## TODO update python script to remove the "root" element
