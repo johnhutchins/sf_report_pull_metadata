@@ -5,20 +5,19 @@ import xml.etree.ElementTree as ET
 json_file_path = 'ReportFolderData.json'
 df = pd.read_json(json_file_path)
 
-# Create the root element for the XML
-root = ET.Element('root')
+# Create a list to hold the XML strings
+xml_elements = []
 
 # Iterate over the rows in the DataFrame and create the XML structure
 for index, row in df.iterrows():
-    member_element = ET.SubElement(root, 'members')
+    member_element = ET.Element('members')
     member_element.text = f"{row['folderName']}/{row['reportDeveloperName']}"
+    # Convert each element to string and add it to the list
+    xml_string = ET.tostring(member_element, encoding='unicode')
+    xml_elements.append(xml_string)
 
-# Convert the ElementTree to a string and add line breaks
-tree = ET.ElementTree(root)
-tree_string = ET.tostring(root, encoding='unicode')
-
-# Adding line breaks between members elements
-tree_string_with_breaks = tree_string.replace('</members>', '</members>\n')
+# Join the XML strings with line breaks
+tree_string_with_breaks = '\n'.join(xml_elements)
 
 # Write the formatted XML string to a file
 output_xml_path = 'FormattedStringsOutput.xml'
@@ -26,3 +25,4 @@ with open(output_xml_path, 'w') as xml_file:
     xml_file.write(tree_string_with_breaks)
 
 print(f"Formatted XML strings with line breaks written to {output_xml_path}")
+
