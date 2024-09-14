@@ -25,4 +25,3 @@ with open(output_xml_path, 'w') as xml_file:
     xml_file.write(tree_string_with_breaks)
 
 print(f"Formatted XML strings with line breaks written to {output_xml_path}")
-
